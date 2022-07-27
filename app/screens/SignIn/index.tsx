@@ -7,10 +7,15 @@ import IconTextInput from "../../components/IconTextInput";
 import { At, Keyhole } from "phosphor-react-native";
 import DefaultButton from "../../components/DefaultButton";
 import { colors } from "../../utils/colors";
+import { signIn } from "../../firebase-config";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSignIn = async () => {
+    signIn(email, password)
+  }
 
   return (
     <DefaultScreen>
@@ -35,7 +40,7 @@ export default function SignIn() {
           <Keyhole color={colors.textLighter}/>
         </IconTextInput>
       </View>
-      <DefaultButton onPress={() => {}} text="Entrar" />
+      <DefaultButton onPress={handleSignIn} text="Entrar" />
     </DefaultScreen>
   );
 }

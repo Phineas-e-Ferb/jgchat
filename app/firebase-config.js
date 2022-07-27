@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -35,3 +35,12 @@ export const signUp = async (name, email, password) => {
     console.log(e);
   }
 };
+
+export const signIn = async (email, password) => {
+  try{
+    const userCredential = await signInWithEmailAndPassword(auth, email, password)
+    console.log(userCredential);
+  }catch (e){
+    console.log(e);
+  }
+}
