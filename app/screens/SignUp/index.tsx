@@ -1,16 +1,30 @@
 import { View, Text, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SignUpIllustration from "../../assets/SignUpIllustration.svg"
 import IconTextInput from '../../components/IconTextInput'
 import { At, Keyhole, UserCircle } from 'phosphor-react-native'
 import { styles } from './styles'
 import DefaultButton from '../../components/DefaultButton'
 import { colors } from '../../utils/colors'
+import {auth, signUp} from '../../firebase-config'
+import { useNavigation } from '@react-navigation/native'
 
-const SignUp = () => {
+const SignUp = ( {navigation}: any) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
+  const handleSignUp = async () => {
+    const user = await signUp(name, email, password)
+  }
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      console.log(user);
+      if(user) navigation.navigate("ChatList")
+    })
+  }, [])
+
   return (
     <KeyboardAvoidingView behavior='position' style={styles.keyboardContainer}>
         <View style={styles.container}>
@@ -25,7 +39,7 @@ const SignUp = () => {
           <IconTextInput value={password} setValue={setPassword} placeholder="Insira sua senha" obscureText>
             <Keyhole color={colors.textLighter}/>
           </IconTextInput>
-          <DefaultButton text='Registrar' onPress={() => { }} />
+          <DefaultButton text='Registrar' onPress={handleSignUp} disabled={!email || !password || !name} />
         </View>
     </KeyboardAvoidingView>
   )

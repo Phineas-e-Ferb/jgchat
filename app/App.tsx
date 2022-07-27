@@ -10,6 +10,7 @@ import AppLoading from "expo-app-loading";
 import React from "react";
 import Home from "./screens/Home";
 import SignUp from "./screens/SignUp";
+import ChatList from "./screens/ChatList";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,7 @@ export default function App() {
           component={SignUp}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="ChatList" component={ChatList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

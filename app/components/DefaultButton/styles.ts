@@ -6,8 +6,9 @@ import { fonts } from "../../utils/fonts";
 export const styles = StyleSheet.create({
     button: {
         backgroundColor: colors.primary,
-        paddingVertical: 12,
-        paddingHorizontal: RFValue(120, 640),
+        paddingVertical: 16,
+        width: '100%',
+        alignItems: 'center',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
