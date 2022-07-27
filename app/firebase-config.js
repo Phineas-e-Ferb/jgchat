@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCtYcvdtaIubKVdUjaFGG3c0HrApeSlX6w",
@@ -29,7 +29,6 @@ export const signUp = async (name, email, password) => {
       name,
       email,
     });
-    console.log(response);
     return userCredential.user;
   } catch (e) {
     console.log(e);
@@ -37,10 +36,22 @@ export const signUp = async (name, email, password) => {
 };
 
 export const signIn = async (email, password) => {
-  try{
+  try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
-    console.log(userCredential);
-  }catch (e){
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export const listCollection = async (collectionName) => {
+  try {
+    const q = query(collection(db, collectionName));
+    const querySnapshot = await getDocs(q);
+    const docs = querySnapshot.docs.map(doc => {
+      return doc.data();
+    })
+    return docs;
+  } catch (e) {
     console.log(e);
   }
 }
