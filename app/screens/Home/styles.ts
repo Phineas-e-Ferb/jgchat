@@ -5,12 +5,6 @@ import { fonts } from "../../utils/fonts";
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.background,
-        paddingVertical: 64,
-        paddingHorizontal: 32,
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-between',
     },
     textContainer: {
         paddingHorizontal: 8,

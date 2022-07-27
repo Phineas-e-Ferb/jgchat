@@ -7,7 +7,6 @@ import { styles } from './styles'
 import DefaultButton from '../../components/DefaultButton'
 import { colors } from '../../utils/colors'
 import {auth, signUp} from '../../firebase-config'
-import { useNavigation } from '@react-navigation/native'
 
 const SignUp = ( {navigation}: any) => {
   const [name, setName] = useState('');

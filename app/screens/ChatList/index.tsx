@@ -1,9 +1,10 @@
 import { Text, View } from 'react-native';
+import { DefaultScreen } from '../../components/DefaultScreen';
 
 export default function ChatList() {
   return (
-    <View >
+    <DefaultScreen >
         <Text>BAcon</Text>
-    </View>
+    </DefaultScreen>
   );
 }
