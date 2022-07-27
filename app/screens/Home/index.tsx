@@ -3,8 +3,16 @@ import { styles } from "./styles";
 import Logo from "../../assets/Logo.svg";
 import HomeIllustration from "../../assets/HomeIllustration.svg";
 import { DefaultScreen } from "../../components/DefaultScreen";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../../contexts/userContext";
 
 export default function Home({ navigation }: any) {
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user) navigation.navigate("ChatList");
+  }, [user]);
+  
   return (
     <DefaultScreen>
       <Logo />

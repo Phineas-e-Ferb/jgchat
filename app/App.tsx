@@ -12,6 +12,7 @@ import Home from "./screens/Home";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
 import ChatList from "./screens/ChatList";
+import { UserProvider } from "./contexts/userContext";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,26 +25,28 @@ export default function App() {
   return !fontsLoaded ? (
     <AppLoading />
   ) : (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignIn"
-          component={SignIn}
-          options={{ headerShown: false }}
-        />
-        
-        <Stack.Screen name="ChatList" component={ChatList} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <UserProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUp}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen name="ChatList" component={ChatList} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserProvider>
   );
 }
