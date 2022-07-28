@@ -9,5 +9,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  signOutButton: {
+    position: 'absolute',
+    right: 16,
+    top: 48,
   }
 });
