@@ -43,8 +43,7 @@ export default function App() {
             component={SignIn}
             options={{ headerShown: false }}
           />
-
-          <Stack.Screen name="ChatList" component={ChatList} />
+          <Stack.Screen name="ChatList" component={ChatList} options={{ headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>
