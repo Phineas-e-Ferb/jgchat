@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View } from "react-native";
+import { KeyboardAvoidingView, Text, View } from "react-native";
 import { DefaultScreen } from "../../components/DefaultScreen";
 import SignInIllustration from "../../assets/SignInIllustration.svg";
 import { styles } from "./styles";
@@ -14,33 +14,37 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
 
   const handleSignIn = async () => {
-    signIn(email, password)
-  }
+    signIn(email, password);
+  };
 
   return (
     <DefaultScreen>
-      <View style={styles.illustration}>
-        <SignInIllustration />
-      </View>
-      <Text style={styles.title}>Acessar conta</Text>
-      <View>
-        <IconTextInput
-          value={email}
-          setValue={setEmail}
-          placeholder="Insira seu email"
-        >
-          <At color={colors.textLighter} />
-        </IconTextInput>
-        <IconTextInput
-          value={password}
-          setValue={setPassword}
-          placeholder="Insira sua senha"
-          obscureText
-        >
-          <Keyhole color={colors.textLighter}/>
-        </IconTextInput>
-      </View>
-      <DefaultButton onPress={handleSignIn} text="Entrar" />
+      <KeyboardAvoidingView behavior="position">
+        <View style={styles.container}>
+          <View style={styles.illustration}>
+            <SignInIllustration />
+          </View>
+          <Text style={styles.title}>Acessar conta</Text>
+          <View>
+            <IconTextInput
+              value={email}
+              setValue={setEmail}
+              placeholder="Insira seu email"
+            >
+              <At color={colors.textLighter} />
+            </IconTextInput>
+            <IconTextInput
+              value={password}
+              setValue={setPassword}
+              placeholder="Insira sua senha"
+              obscureText
+            >
+              <Keyhole color={colors.textLighter} />
+            </IconTextInput>
+          </View>
+          <DefaultButton onPress={handleSignIn} text="Entrar" />
+        </View>
+      </KeyboardAvoidingView>
     </DefaultScreen>
   );
 }
