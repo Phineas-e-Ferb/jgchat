@@ -14,5 +14,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderRadius: 32,
+    marginBottom: 24
   }
 });
