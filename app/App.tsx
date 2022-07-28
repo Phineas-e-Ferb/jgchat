@@ -11,7 +11,7 @@ import React from "react";
 import Home from "./screens/Home";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
-import ChatList from "./screens/ChatList";
+import UserChatList from "./screens/UserChatList";
 import { UserProvider } from "./contexts/userContext";
 
 const Stack = createNativeStackNavigator();
@@ -43,7 +43,7 @@ export default function App() {
             component={SignIn}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="ChatList" component={ChatList} options={{ headerShown: false}}/>
+          <Stack.Screen name="UserChatList" component={UserChatList} options={{ headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>

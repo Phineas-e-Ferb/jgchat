@@ -10,7 +10,7 @@ export default function Home({ navigation }: any) {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    if (user) navigation.navigate("ChatList");
+    if (user) navigation.navigate("UserChatList");
   }, [user]);
   
   return (

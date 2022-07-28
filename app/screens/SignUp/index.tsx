@@ -19,7 +19,7 @@ const SignUp = ( {navigation}: any) => {
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
-      if(user) navigation.navigate("ChatList")
+      if(user) navigation.navigate("UserChatList")
     })
   }, [])
 

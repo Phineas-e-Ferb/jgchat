@@ -5,7 +5,7 @@ import { styles } from "./styles";
 import { useState } from "react";
 import { TabButton } from "../../components/TabButton";
 
-export default function ChatList() {
+export default function UserChatList() {
   const [userButtonSelected, setUserButtonSelected] = useState(false);
 
   return (
