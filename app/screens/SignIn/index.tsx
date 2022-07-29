@@ -8,8 +8,9 @@ import { At, Keyhole } from "phosphor-react-native";
 import DefaultButton from "../../components/DefaultButton";
 import { colors } from "../../utils/colors";
 import { signIn } from "../../firebase-config";
+import { ReturnButton } from "../../components/ReturnButton";
 
-export default function SignIn() {
+export default function SignIn({navigation}: any) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -45,6 +46,7 @@ export default function SignIn() {
           <DefaultButton onPress={handleSignIn} text="Entrar" />
         </View>
       </KeyboardAvoidingView>
+      <ReturnButton navigation={navigation} />
     </DefaultScreen>
   );
 }

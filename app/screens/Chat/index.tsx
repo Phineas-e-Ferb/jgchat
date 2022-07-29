@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { DefaultScreen } from "../../components/DefaultScreen";
 import { MessageBallon } from "../../components/MessageBallon";
+import { ReturnButton } from "../../components/ReturnButton";
 import { UserContext } from "../../contexts/userContext";
 import {
   getConversationMessages,
@@ -32,9 +33,10 @@ export type Message = {
 };
 
 type ChatProps = {
-  route: RouteProp<{ params: { email: string } }, "params">;
+  route: RouteProp<{ params: { email: string } }, "params">,
+  navigation: any
 };
-export default function Chat({ route }: ChatProps) {
+export default function Chat({ navigation, route }: ChatProps) {
   const [receiver, setReceiver] = useState<Receiver>();
   const [message, setMessage] = useState("");
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
@@ -61,6 +63,7 @@ export default function Chat({ route }: ChatProps) {
 
   return (
     <DefaultScreen dontShowSignout>
+      <ReturnButton navigation={navigation}/>
       <View style={styles.receiverInfo}>
         <Image
           style={styles.receiverImage}
@@ -74,11 +77,12 @@ export default function Chat({ route }: ChatProps) {
         </View>
       </View>
       <ScrollView style={styles.messageList}>
-        {chatMessages.map((chatMessage) => (
+        {chatMessages.map((chatMessage, index) => (
           <MessageBallon
             isSendedMessage={user?.email === chatMessage.senderEmail}
             message={chatMessage.message}
             time={chatMessage.senderTime}
+            key={index}
           />
         ))}
       </ScrollView>

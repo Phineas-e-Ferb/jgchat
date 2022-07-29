@@ -7,6 +7,7 @@ import { styles } from './styles'
 import DefaultButton from '../../components/DefaultButton'
 import { colors } from '../../utils/colors'
 import {auth, signUp} from '../../firebase-config'
+import { ReturnButton } from '../../components/ReturnButton'
 
 const SignUp = ( {navigation}: any) => {
   const [name, setName] = useState('');
@@ -25,6 +26,7 @@ const SignUp = ( {navigation}: any) => {
 
   return (
     <KeyboardAvoidingView behavior='position' style={styles.keyboardContainer}>
+        <ReturnButton navigation={navigation}/>
         <View style={styles.container}>
           <SignUpIllustration />
           <Text style={styles.title}>Cadastre-se</Text>
