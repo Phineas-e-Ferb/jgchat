@@ -1,5 +1,6 @@
+import { RouteProp } from "@react-navigation/native";
 import { PaperPlaneTilt } from "phosphor-react-native";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Image,
   ScrollView,
@@ -9,14 +10,37 @@ import {
   View,
 } from "react-native";
 import { DefaultScreen } from "../../components/DefaultScreen";
+import { UserContext } from "../../contexts/userContext";
+import { getUserInfo, sendMessage } from "../../firebase-config";
 
 import { styles } from "./styles";
 
-export default function Chat() {
-  const receiver = {
-    name: "Gabriel Sabanai",
-    email: "sabagames@gmail.com",
-  };
+export type Receiver = {
+  name: string,
+  email: string
+}
+
+type ChatProps = {
+  route: RouteProp<{ params: { email: string } }, 'params'>
+}
+export default function Chat({ route }: ChatProps) {
+  const [receiver, setReceiver] = useState<Receiver>();
+  const [message, setMessage] = useState('');
+  const {user} = useContext(UserContext);
+  const { email } = route.params;
+  useEffect(() => {
+    const getReceiverInfo = async () => {
+      const response = await getUserInfo(email) as Receiver;
+      setReceiver(response)
+    }
+    getReceiverInfo()
+  }, [])
+
+  const handleSendMessage = () => {
+    sendMessage(message, receiver?.email, user?.email)
+    setMessage('')
+  }
+
   return (
     <DefaultScreen dontShowSignout>
       <View style={styles.receiverInfo}>
@@ -27,15 +51,15 @@ export default function Chat() {
           }}
         />
         <View>
-          <Text style={styles.receiverName}>{receiver.name}</Text>
-          <Text style={styles.receiverEmail}>{receiver.email}</Text>
+          <Text style={styles.receiverName}>{receiver?.name}</Text>
+          <Text style={styles.receiverEmail}>{receiver?.email}</Text>
         </View>
       </View>
       <ScrollView style={styles.messageList}></ScrollView>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.messageInput} placeholder="Escreva aqui..." multiline/>
-        <TouchableOpacity style={styles.sendButton}>
-          <PaperPlaneTilt weight="fill" color="white"/>
+        <TextInput style={styles.messageInput} placeholder="Escreva aqui..." multiline value={message} onChangeText={setMessage}/>
+        <TouchableOpacity style={styles.sendButton} onPress={handleSendMessage}>
+          <PaperPlaneTilt weight="fill" color="white" />
         </TouchableOpacity>
       </View>
     </DefaultScreen>

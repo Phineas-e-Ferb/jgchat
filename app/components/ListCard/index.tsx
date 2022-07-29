@@ -14,17 +14,19 @@ type ListCardType = {
   username: string;
   secondaryInfo: string;
   isChatCard: boolean;
-  navigationToChatScreen: () => void;
+  email: string;
+  navigationToChatScreen: (email: string) => void;
 };
 
 const ListCard = ({
   username,
+  email,
   secondaryInfo,
   isChatCard,
   navigationToChatScreen,
 }: ListCardType) => {
   return (
-    <TouchableOpacity style={styles.listCardContainer} onPress={navigationToChatScreen}>
+    <TouchableOpacity style={styles.listCardContainer} onPress={() => navigationToChatScreen(email)}>
       <View style={styles.userInfo}>
         <Image
           style={styles.userPic}

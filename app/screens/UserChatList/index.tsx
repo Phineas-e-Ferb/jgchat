@@ -27,8 +27,10 @@ export default function UserChatList({navigation}: any) {
     getUserList()
   }, [])
 
-  const navigationToChatScreen = () => {
-    navigation.navigate('Chat')
+  const navigationToChatScreen = (email: string) => {
+    navigation.navigate('Chat', {
+      email
+    })
   }
   return (
     <DefaultScreen>

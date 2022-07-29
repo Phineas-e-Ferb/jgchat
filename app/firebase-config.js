@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCtYcvdtaIubKVdUjaFGG3c0HrApeSlX6w",
@@ -64,6 +64,18 @@ export const sendMessage = async (message, receiverEmail, senderEmail) => {
       senderEmail,
       senderTime: Date.now()
     });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+
+export const getUserInfo = async (userEmail) => {
+  try{
+    const q = query(collection(db, "user"), where("email", "==", userEmail));
+    const querySnapshot = await getDocs(q);
+    const doc = querySnapshot.docs[0].data()
+    return doc;
   } catch (e) {
     console.log(e);
   }

@@ -11,12 +11,12 @@ export type UserChatType = {
 
 type ItemType = {
   data: UserChatType;
-  navigationToChatScreen: () => void;
+  navigationToChatScreen: (email: string) => void;
 };
 
 type ListType = {
   data: UserChatType[];
-  navigationToChatScreen: () => void;
+  navigationToChatScreen: (email: string) => void;
 };
 
 const Item = ({ data, navigationToChatScreen }: ItemType) => (
@@ -25,6 +25,7 @@ const Item = ({ data, navigationToChatScreen }: ItemType) => (
     secondaryInfo={data.email ?? data.lastMessage ?? ""}
     isChatCard={!!data.lastMessage}
     navigationToChatScreen={navigationToChatScreen}
+    email={data.email!}
   />
 );
 const List = ({ data, navigationToChatScreen }: ListType) => {
