@@ -30,6 +30,7 @@ const List = ({ data }: ListType) => {
   const renderItem : ListRenderItem<UserChatType> = ({item}) => <Item data={item}/>
   return (
     <FlatList<UserChatType>
+      style={{width: '100%'}}
       data={data}
       renderItem={renderItem}
       keyExtractor={(item) => item.name}

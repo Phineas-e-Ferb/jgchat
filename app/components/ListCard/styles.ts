@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import { colors } from "../../utils/colors";
 import { fonts } from "../../utils/fonts";
 
 export const styles = StyleSheet.create({
     listCardContainer: {
         backgroundColor: 'white',
-        width: 360,
+        width: '100%',
         padding: 12,
         borderRadius: 8,
         flexDirection: 'row',
@@ -30,6 +31,8 @@ export const styles = StyleSheet.create({
     secondaryInfoText: {
         ...fonts.body,
         fontSize: RFValue(14, 640),
+    },
+    icon: {
+        alignSelf: 'center',
     }
-
 })

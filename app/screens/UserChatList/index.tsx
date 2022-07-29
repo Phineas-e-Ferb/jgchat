@@ -42,8 +42,8 @@ export default function UserChatList() {
             active={userButtonSelected}
           />
         </View>
-        <List data={userButtonSelected ? users! : []} />
       </View>
+      <List data={userButtonSelected ? users! : []} />
     </DefaultScreen>
   );
 }
