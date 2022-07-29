@@ -1,41 +1,44 @@
-import React from 'react'
-import { FlatList, ListRenderItem } from 'react-native'
-import ListCard from '../../../components/ListCard'
+import React from "react";
+import { FlatList, ListRenderItem } from "react-native";
+import ListCard from "../../../components/ListCard";
 export type UserChatType = {
-  name: string,
-  email?: string,
-  photo?: string,
-  lastMessage?: string,
-  time?: string
-}
-
+  name: string;
+  email?: string;
+  photo?: string;
+  lastMessage?: string;
+  time?: string;
+};
 
 type ItemType = {
-  data: UserChatType
-}
+  data: UserChatType;
+  navigationToChatScreen: () => void;
+};
 
 type ListType = {
-  data: UserChatType[]
-}
+  data: UserChatType[];
+  navigationToChatScreen: () => void;
+};
 
-const Item = ({ data }: ItemType) => (
+const Item = ({ data, navigationToChatScreen }: ItemType) => (
   <ListCard
     username={data.name}
     secondaryInfo={data.email ?? data.lastMessage ?? ""}
-    onPress={()=>{}}
     isChatCard={!!data.lastMessage}
+    navigationToChatScreen={navigationToChatScreen}
   />
-)
-const List = ({ data }: ListType) => {
-  const renderItem : ListRenderItem<UserChatType> = ({item}) => <Item data={item}/>
+);
+const List = ({ data, navigationToChatScreen }: ListType) => {
+  const renderItem: ListRenderItem<UserChatType> = ({ item }) => (
+    <Item data={item} navigationToChatScreen={navigationToChatScreen} />
+  );
   return (
     <FlatList<UserChatType>
-      style={{width: '100%'}}
+      style={{ width: "100%" }}
       data={data}
       renderItem={renderItem}
       keyExtractor={(item) => item.name}
-      />
-  )
-}
+    />
+  );
+};
 
-export default List
+export default List;

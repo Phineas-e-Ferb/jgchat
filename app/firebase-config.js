@@ -55,3 +55,16 @@ export const listCollection = async (collectionName) => {
     console.log(e);
   }
 }
+
+export const sendMessage = async (message, receiverEmail, senderEmail) => {
+  try{
+    const response = await addDoc(collection(db, "message"), {
+      message,
+      receiverEmail,
+      senderEmail,
+      senderTime: Date.now()
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}

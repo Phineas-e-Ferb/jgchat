@@ -1,10 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { colors } from '../../utils/colors';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.background,
-    paddingVertical: 64,
+    paddingTop: (StatusBar.currentHeight??0) + 32,
+    paddingBottom: 32,
     paddingHorizontal: 16,
     flex: 1,
     alignItems: 'center',
@@ -13,6 +14,6 @@ export const styles = StyleSheet.create({
   signOutButton: {
     position: 'absolute',
     right: 16,
-    top: 48,
+    top: (StatusBar.currentHeight??0) + 24,
   }
 });

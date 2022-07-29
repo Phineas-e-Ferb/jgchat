@@ -9,7 +9,7 @@ import List, { UserChatType } from "./List";
 import { listCollection } from "../../firebase-config";
 import { DocumentData } from "firebase/firestore";
 
-export default function UserChatList() {
+export default function UserChatList({navigation}: any) {
   const [userButtonSelected, setUserButtonSelected] = useState(false);
   const [users, setUsers] = useState<UserChatType[]>();
 
@@ -26,6 +26,10 @@ export default function UserChatList() {
     }
     getUserList()
   }, [])
+
+  const navigationToChatScreen = () => {
+    navigation.navigate('Chat')
+  }
   return (
     <DefaultScreen>
       <View style={styles.container}>
@@ -43,7 +47,7 @@ export default function UserChatList() {
           />
         </View>
       </View>
-      <List data={userButtonSelected ? users! : []} />
+      <List data={userButtonSelected ? users! : []} navigationToChatScreen={navigationToChatScreen}/>
     </DefaultScreen>
   );
 }

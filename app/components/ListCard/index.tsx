@@ -2,7 +2,6 @@ import { Chats } from "phosphor-react-native";
 import React from "react";
 import {
   Image,
-  ImageSourcePropType,
   Text,
   TouchableOpacity,
   View,
@@ -15,18 +14,17 @@ type ListCardType = {
   username: string;
   secondaryInfo: string;
   isChatCard: boolean;
-  onPress: () => void;
+  navigationToChatScreen: () => void;
 };
 
 const ListCard = ({
   username,
   secondaryInfo,
   isChatCard,
-  onPress,
+  navigationToChatScreen,
 }: ListCardType) => {
-  console.log(isChatCard);
   return (
-    <TouchableOpacity style={styles.listCardContainer} onPress={onPress}>
+    <TouchableOpacity style={styles.listCardContainer} onPress={navigationToChatScreen}>
       <View style={styles.userInfo}>
         <Image
           style={styles.userPic}

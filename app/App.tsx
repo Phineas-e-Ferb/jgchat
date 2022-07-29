@@ -12,9 +12,18 @@ import Home from "./screens/Home";
 import SignUp from "./screens/SignUp";
 import SignIn from "./screens/SignIn";
 import UserChatList from "./screens/UserChatList";
+import Chat from "./screens/Chat";
 import { UserProvider } from "./contexts/userContext";
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Home: undefined,
+  SignUp: undefined,
+  SignIn: undefined,
+  UserChatList: undefined,
+  Chat: undefined
+}
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -43,7 +52,16 @@ export default function App() {
             component={SignIn}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="UserChatList" component={UserChatList} options={{ headerShown: false}}/>
+          <Stack.Screen
+            name="UserChatList"
+            component={UserChatList}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Chat"
+            component={Chat}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>

@@ -7,17 +7,18 @@ import { auth } from '../../firebase-config';
 import { styles } from './styles';
 
 type DefaultScreenType = {
-  children: React.ReactNode
+  children: React.ReactNode,
+  dontShowSignout?: boolean
 }
 
-export function DefaultScreen({ children }: DefaultScreenType) {
+export function DefaultScreen({ children, dontShowSignout }: DefaultScreenType) {
   const { user } = useContext(UserContext);
   return (
     <View style={styles.container}>
       {
-        user &&
+        !dontShowSignout && user &&
         <TouchableOpacity style={styles.signOutButton} onPress={() => auth.signOut()}>
-          <SignOut />
+          <SignOut weight='bold'/>
         </TouchableOpacity>
       }
       {children}
