@@ -1,9 +1,8 @@
 # React Native Chat Challenge
-
 ## Desafio
 Desenvolvimento de um aplicativo de troca de mensagens, onde usuários podem criar uma conta e conversar com outros usuários cadastrados na plataforma, além disso para deixar o aplicativo mais interativo a cada nova mensagem recebida o usuário deverá receber uma notificação no seu dispositivo.
 
-<img src="https://user-images.githubusercontent.com/46005310/180823342-abc55d8d-cb6e-4c71-9d13-8725952c4607.jpg" width="600"/>
+<img src="https://user-images.githubusercontent.com/46005310/185638584-b0446cc7-4325-474f-bbf5-ecb7c0ad16dd.png" height="600"/>
 
 ## Tecnologias utilizadas
 ### React Native + Expo
@@ -15,10 +14,7 @@ A interface de usuário será desenvolvida completamente em React Native.
 O Firebase será utilizado para controlar todo o sistema de autenticação e troca de mensagens da aplicação.
 
 ## Definição de Requisitos
-### Tasks
-[Todo]()
-### Fluxo do aplicativo
-[Todo]()
 ### Protótipo
-[Todo]()
+<img src="https://user-images.githubusercontent.com/46005310/185638437-cc59a00a-65d7-44e9-8897-a0a8c1ede625.png" width="600"/>
 
+[Link para o Figma](https://www.figma.com/file/lXqpZ2WIQ3qQrC3ibnalIL/JGChat?node-id=8%3A3)
