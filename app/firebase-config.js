@@ -8,8 +8,10 @@ import {
 import {
   addDoc,
   collection,
+  doc,
   getDocs,
   getFirestore,
+  onSnapshot,
   query,
   where,
 } from "firebase/firestore";
@@ -118,3 +120,9 @@ export const getConversationMessages = async (
     console.log(e);
   }
 };
+
+export const observerMessage = (setHasNewMessage) => {
+  onSnapshot(collection(db, "message"), {includeMetadataChanges: true}, (doc) => {
+    setHasNewMessage(true);
+  })
+}

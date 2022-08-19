@@ -13,6 +13,7 @@ import { DefaultScreen } from "../../components/DefaultScreen";
 import { MessageBallon } from "../../components/MessageBallon";
 import { ReturnButton } from "../../components/ReturnButton";
 import { UserContext } from "../../contexts/userContext";
+import { MessageContext } from "../../contexts/messageContext";
 import {
   getConversationMessages,
   getUserInfo,
@@ -39,19 +40,15 @@ type ChatProps = {
 export default function Chat({ navigation, route }: ChatProps) {
   const [receiver, setReceiver] = useState<Receiver>();
   const [message, setMessage] = useState("");
-  const [chatMessages, setChatMessages] = useState<Message[]>([]);
   const { user } = useContext(UserContext);
   const { email } = route.params;
+  const {messages, setCurrentChatUser} = useContext(MessageContext);
 
   useEffect(() => {
     const getReceiverInfo = async () => {
       const response = (await getUserInfo(email)) as Receiver;
       setReceiver(response);
-      const messageResponse = (await getConversationMessages(
-        user?.email,
-        response.email
-      )) as Message[];
-      setChatMessages(messageResponse);
+      setCurrentChatUser(email);
     };
     getReceiverInfo();
   }, []);
@@ -77,7 +74,7 @@ export default function Chat({ navigation, route }: ChatProps) {
         </View>
       </View>
       <ScrollView style={styles.messageList}>
-        {chatMessages.map((chatMessage, index) => (
+        {messages?.map((chatMessage, index) => (
           <MessageBallon
             isSendedMessage={user?.email === chatMessage.senderEmail}
             message={chatMessage.message}

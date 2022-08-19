@@ -14,14 +14,16 @@ import SignIn from "./screens/SignIn";
 import UserChatList from "./screens/UserChatList";
 import Chat from "./screens/Chat";
 import { UserProvider } from "./contexts/userContext";
+import { MessageProvider } from "./contexts/messageContext";
+
 
 export type RootStackParamList = {
-  Home: undefined,
-  SignUp: undefined,
-  SignIn: undefined,
-  UserChatList: undefined,
-  Chat: undefined
-}
+  Home: undefined;
+  SignUp: undefined;
+  SignIn: undefined;
+  UserChatList: undefined;
+  Chat: undefined;
+};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -35,35 +37,37 @@ export default function App() {
     <AppLoading />
   ) : (
     <UserProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="SignUp"
-            component={SignUp}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="SignIn"
-            component={SignIn}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="UserChatList"
-            component={UserChatList}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Chat"
-            component={Chat}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <MessageProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUp}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="SignIn"
+              component={SignIn}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="UserChatList"
+              component={UserChatList}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Chat"
+              component={Chat}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </MessageProvider>
     </UserProvider>
   );
 }
