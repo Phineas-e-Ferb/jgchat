@@ -1,4 +1,5 @@
-# React Native Chat Challenge
+![Logo](https://user-images.githubusercontent.com/46005310/185638949-0c15c17c-c8d1-488e-a106-04ef9fe9c6ea.png)
+
 ## Desafio
 Desenvolvimento de um aplicativo de troca de mensagens, onde usuários podem criar uma conta e conversar com outros usuários cadastrados na plataforma, além disso para deixar o aplicativo mais interativo a cada nova mensagem recebida o usuário deverá receber uma notificação no seu dispositivo.
 
